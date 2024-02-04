@@ -19,6 +19,8 @@ class Peer:
         self.sockets_to_peers=[]
         self.MessageList={}
         self.alive_peers={}
+        self.addr_socket_map={}
+        self.socket_addr_map={}
     
     def start(self):
         # start initial threads
@@ -110,20 +112,33 @@ class Peer:
 
     
     def handle_peer(self,new_socket):
-
-        response = new_socket.recv(1024)
-        print(response)
+        new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
+        
         while True:
-            pass
+            data = new_socket.recv(1024)
+            print(data)
+            message = data.decode().split(':')
+            if message[0]=="connected to peer":
+                self.addr_socket_map[(message[1],int(message[2]))]=new_socket
+                self.socket_addr_map[new_socket]=(message[1],int(message[2]))
+                # Liveness Request:<self.timestamp>:<self.IP >:<self.port>
+            elif message[0]=="liveness Request":
+                # Liveness Reply:<sender.timestamp >:<sender.IP >:<self.IP >
+                timestamp=datetime.now().timestamp()
+                reply="Liveness Reply:{0}:{1}:{2}".format(timestamp,self.ip,self.port)
+                new_socket.send(reply.encode())
+            elif message[0]=="Liveness Reply":
+                pass
+
     
 
 
 if __name__ == '__main__':
     port=int(input('Enter port to connect to: '))
     peer = Peer(port=port)
-    peer.connect_to_seeds()
+    peer.start()
+
     # port=int(input('Enter port to connect to: '))
     # ip=input('Enter ip to connect to: ')
     # peer = Peer(port,ip)
     # peer.listen()
-    #
