@@ -69,12 +69,17 @@ class Seed:
                 print("registering peer")
                 self.peerlist.append((message[1],int(message[2])))
                 peer.send('registered successfully'.encode())
+                
+
                 print("peer registered successfully")
+                open('outfile.txt','a').write(f'{message[1]}:{message[2]} registered to seed with address {self.ip}:{self.port}\n')
+
 
             if message[0] =='dead node':
                 address_of_dead_node = (message[1],int(message[2]))
                 self.peerlist.remove(address_of_dead_node)
                 print("dead node ",address_of_dead_node," removed from peer list")
+                open('outfile.txt','a').write(f'dead node {address_of_dead_node} removed from peer list\n')
 
             
             
