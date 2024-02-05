@@ -1,9 +1,10 @@
 import socket 
 import threading
-import uuid
+
 from datetime import datetime
 from time import sleep
-
+import time
+import hashlib
 
 class Peer:
     def __init__(self,port:int,ip:str='localhost'):
@@ -21,6 +22,7 @@ class Peer:
         self.alive_peers={}
         self.addr_socket_map={}
         self.socket_addr_map={}
+        
     
     def start(self):
         # start initial threads
@@ -108,12 +110,8 @@ class Peer:
                 new_peers = [(adr[i],int(adr[i+1])) for i in range(0,len(adr),2)]
                 break
     
-    
 
-    
-    def handle_peer(self,new_socket):
-        new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
-        
+    def handle_messages(self, new_socket):
         while True:
             data = new_socket.recv(1024)
             print(data)
@@ -121,15 +119,60 @@ class Peer:
             if message[0]=="connected to peer":
                 self.addr_socket_map[(message[1],int(message[2]))]=new_socket
                 self.socket_addr_map[new_socket]=(message[1],int(message[2]))
-                # Liveness Request:<self.timestamp>:<self.IP >:<self.port>
             elif message[0]=="liveness Request":
-                # Liveness Reply:<sender.timestamp >:<sender.IP >:<self.IP >
                 timestamp=datetime.now().timestamp()
                 reply="Liveness Reply:{0}:{1}:{2}".format(timestamp,self.ip,self.port)
                 new_socket.send(reply.encode())
             elif message[0]=="Liveness Reply":
-                pass
+                # Update timestamp of peer
+                self.peer_timestamps[self.socket_addr_map[new_socket]] = time.time()
+            elif message[0]=="gossip message":
+                # Check if message is in Message List
+                message_hash = hashlib.sha256(message[1].encode()).hexdigest()
+                if message_hash not in self.message_list:
+                    self.message_list[message_hash] = True
 
+                    # Forward message to all peers except the one it was received from
+                    for socket in self.socket_addr_map.keys():
+                        if socket != new_socket:
+                            socket.send(data)
+
+
+    def liveness_test(self, new_socket):
+        while True:
+            timestamp = datetime.now().timestamp()
+            request = "Liveness Request:{0}:{1}:{2}".format(timestamp, self.ip, self.port)
+            new_socket.send(request.encode())
+
+            # Check if peer is dead
+            addr = self.socket_addr_map[new_socket]
+            if addr in self.peer_timestamps and time.time() - self.peer_timestamps[addr] > 3 * 13:
+                dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
+                # Send dead_node_message to all seeds
+                for seed_socket in self.sockets_to_seed:
+                    seed_socket.send(dead_node_message.encode())
+
+
+            sleep(13)
+    
+    def generate_messages(self):
+        for i in range(10):
+            timestamp = datetime.now().timestamp()
+            message = "{0}:{1}:{2}".format(timestamp, self.ip, i)
+            message_hash = hashlib.sha256(message.encode()).hexdigest()
+            self.message_list[message_hash] = True
+
+            # Send message to all connected peers
+            for socket in self.socket_addr_map.keys():
+                socket.send(message.encode())
+
+            sleep(5)
+
+    def handle_peer(self, new_socket):
+        new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
+        threading.Thread(target=self.handle_messages, args=(new_socket,)).start()
+        threading.Thread(target=self.liveness_test, args=(new_socket,)).start()
+        threading.Thread(target=self.generate_messages).start()
     
 
 
