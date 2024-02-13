@@ -140,12 +140,13 @@ class Peer:
             if message[0]=="connected to peer":
                 self.addr_socket_map[(message[1],int(message[2]))]=new_socket
                 self.socket_addr_map[new_socket]=(message[1],int(message[2]))
-            elif message[0]=="liveness Request":
+            elif message[0]=="Liveness Request":
                 timestamp=datetime.now().timestamp()
                 reply="Liveness Reply:{0}:{1}:{2}".format(timestamp,self.ip,self.port)
                 new_socket.send(reply.encode())
             elif message[0]=="Liveness Reply":
                 # Update timestamp of peer
+                print(message)
                 self.peer_timestamps[self.socket_addr_map[new_socket]] = time.time()
             elif message[0]=="gossip message":
                 # Check if message is in Message List
@@ -179,7 +180,8 @@ class Peer:
     def generate_messages(self):
         for i in range(10):
             timestamp = datetime.now().timestamp()
-            message = "{0}:{1}:{2}".format(timestamp, self.ip, i)
+            
+            message = "gossip message:{0}:{1}:{2}:{3}".format(timestamp, f'message {i}',self.ip, self.port)
             message_hash = hashlib.sha256(message.encode()).hexdigest()
             self.message_list[message_hash] = True
 
