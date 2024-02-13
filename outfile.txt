@@ -86,3 +86,9 @@ localhost:5 registered to seed with address localhost:1
 localhost:5 registered to seed with address localhost:2
 localhost:6 registered to seed with address localhost:1
 localhost:6 registered to seed with address localhost:2
+localhost:3 registered to seed with address localhost:1
+localhost:3 registered to seed with address localhost:2
+localhost:4 registered to seed with address localhost:1
+localhost:4 registered to seed with address localhost:2
+localhost:5 registered to seed with address localhost:1
+localhost:5 registered to seed with address localhost:2

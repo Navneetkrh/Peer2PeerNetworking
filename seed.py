@@ -30,58 +30,52 @@ class Seed:
         self.sock.listen(10)
         print("listening on  ",self.ip,self.port)
         while True:
-            peer, addr = self.sock.accept()
-            
-            peer_thread = threading.Thread(target=self.handle_peer,args=(peer,addr))
-            peer_thread.start()
-            print("peer ",addr," connected")
-
+            try:
+                peer, addr = self.sock.accept()
+                peer_thread = threading.Thread(target=self.handle_peer,args=(peer,addr))
+                peer_thread.start()
+                print("peer ",addr," connected")
+            except Exception as e:
+                print(f"An error occurred while listening: ", e)
     def close_dead_peer(self,peer,addr):
         if(addr not in self.peerlist):
             peer.close()
             print("peer should be dead with address",addr)
             return
 
-    def handle_peer(self,peer,addr):
-        
-        # peer.send('peer list :{0}'.format(self.peerlist).encode())
-        peer.send('welcome connected to seed with address {0}:{1}'.format(self.ip,self.port).encode())
-        while True:
-            # self.close_dead_peer(peer,addr)
-            data = peer.recv(1024)
-            decoded_data = data.decode()
-            if(decoded_data == ''):
-                continue
-            print("received data from ",addr,": ",decoded_data)
-            message = decoded_data.split(':')
-            print("message is ",message)
-            if message[0] == 'peer list':
-                print("sending peer list")
-                list_of_peers=""
-                for i in self.peerlist:
-                    list_of_peers = list_of_peers+":" + i[0] + "," + str(i[1]) 
-                
-                data_to_send = "peer list"+":"+list_of_peers
-                peer.send(data_to_send.encode())
-                print("peer list sent")
-                print("peer list is ",list_of_peers)
-
-            if message[0] == 'register':
-                print("registering peer")
-                self.peerlist.append((message[1],int(message[2])))
-                peer.send('registered successfully'.encode())
-                
-
-                print("peer registered successfully")
-                open('outfile.txt','a').write(f'{message[1]}:{message[2]} registered to seed with address {self.ip}:{self.port}\n')
-
-
-            if message[0] =='dead node':
-                address_of_dead_node = (message[1],int(message[2]))
-                self.peerlist.remove(address_of_dead_node)
-                print("dead node ",address_of_dead_node," removed from peer list")
-                open('outfile.txt','a').write(f'dead node {address_of_dead_node} removed from peer list\n')
-
+    def handle_peer(self, peer, addr):
+        try:
+            peer.send('welcome connected to seed with address {0}:{1}'.format(self.ip, self.port).encode())
+            while True:
+                data = peer.recv(1024)
+                decoded_data = data.decode()
+                if(decoded_data == ''):
+                    continue
+                print("received data from ", addr, ": ", decoded_data)
+                message = decoded_data.split(':')
+                print("message is ", message)
+                if message[0] == 'peer list':
+                    print("sending peer list")
+                    list_of_peers = ""
+                    for i in self.peerlist:
+                        list_of_peers = list_of_peers + ":" + i[0] + "," + str(i[1])
+                    data_to_send = "peer list" + ":" + list_of_peers
+                    peer.send(data_to_send.encode())
+                    print("peer list sent")
+                    print("peer list is ", list_of_peers)
+                if message[0] == 'register':
+                    print("registering peer")
+                    self.peerlist.append((message[1], int(message[2])))
+                    peer.send('registered successfully'.encode())
+                    print("peer registered successfully")
+                    open('outfile.txt', 'a').write(f'{message[1]}:{message[2]} registered to seed with address {self.ip}:{self.port}\n')
+                if message[0] == 'dead node':
+                    address_of_dead_node = (message[1], int(message[2]))
+                    self.peerlist.remove(address_of_dead_node)
+                    print("dead node ", address_of_dead_node, " removed from peer list")
+                    open('outfile.txt', 'a').write(f'dead node {address_of_dead_node} removed from peer list\n')
+        except Exception as e:
+            print(f"An error occurred while handling the peer: ", e)
             
             
                 
