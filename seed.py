@@ -64,6 +64,7 @@ class Seed:
                 data_to_send = "peer list"+":"+list_of_peers
                 peer.send(data_to_send.encode())
                 print("peer list sent")
+                print("peer list is ",list_of_peers)
 
             if message[0] == 'register':
                 print("registering peer")
