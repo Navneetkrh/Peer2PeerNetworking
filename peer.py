@@ -18,16 +18,17 @@ class Peer:
         self.find_seeds()
         self.sockets_to_seed=[]
         self.sockets_to_peers=[]
-        self.MessageList={}
+        self.message_list={}
         self.alive_peers={}
         self.addr_socket_map={}
         self.socket_addr_map={}
+        self.peer_timestamps={}
         
     
     def start(self):
         # start initial threads
         threading.Thread(target=self.listen).start()
-        threading.Thread(target=self.connect_to_peers).start()
+
         threading.Thread(target=self.connect_to_seeds).start()
 
 
@@ -57,6 +58,9 @@ class Peer:
         # self.available_peers = list(set(self.available_peers) | set(new_peers))
         # print(self.available_peers)
             
+        # after getting the pl
+        sleep(1);
+        threading.Thread(target=self.connect_to_peers).start() 
 
     def listen(self):
         self.sock.listen(10)
@@ -64,11 +68,13 @@ class Peer:
         while True:
             peer, addr = self.sock.accept()
             self.available_peers.append(peer)
-            peer_thread = threading.Thread(target=self.handle_peer,args=(peer,addr))
+            peer_thread = threading.Thread(target=self.handle_peer,args=(peer,))
             peer_thread.start()
             print("peer ",addr," connected")
 
     def connect_to_peers(self):
+        print("starting thread for connect_to_peers")
+        print("available peerlist ",self.available_peers)
         for peer in self.available_peers:
         #  if same peer dont connect
             if(peer[0]==self.ip and peer[1]==self.port):
@@ -108,8 +114,23 @@ class Peer:
                 adr=message[2].split(',')
                 print("adr: ",adr)
                 new_peers = [(adr[i],int(adr[i+1])) for i in range(0,len(adr),2)]
+                self.available_peers = list(set(self.available_peers) | set(new_peers))
                 break
     
+    def handle_peer(self, new_socket):
+        new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
+        message="";
+        while(message==""):
+            data = new_socket.recv(1024)
+            print(data)
+            message = data.decode().split(':')
+            if message[0]=="connected to peer":
+                self.addr_socket_map[(message[1],int(message[2]))]=new_socket
+                self.socket_addr_map[new_socket]=(message[1],int(message[2]))
+
+        threading.Thread(target=self.handle_messages, args=(new_socket,)).start()
+        threading.Thread(target=self.liveness_test, args=(new_socket,)).start()
+        threading.Thread(target=self.generate_messages).start()
 
     def handle_messages(self, new_socket):
         while True:
@@ -168,11 +189,7 @@ class Peer:
 
             sleep(5)
 
-    def handle_peer(self, new_socket):
-        new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
-        threading.Thread(target=self.handle_messages, args=(new_socket,)).start()
-        threading.Thread(target=self.liveness_test, args=(new_socket,)).start()
-        threading.Thread(target=self.generate_messages).start()
+
     
 
 
