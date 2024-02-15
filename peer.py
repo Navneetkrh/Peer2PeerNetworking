@@ -132,7 +132,14 @@ class Peer:
             print(f"An error occurred while handling the seed: ", e)
     
     def handle_peer(self, new_socket):
+
         try:
+            # if already connections atmost 4 then dont connect
+            if len(self.addr_socket_map) >= 4:
+                # send message to peer that already connected to 4 peers
+                new_socket.send("PEER BUSY,already,connected to 4 peers".encode())
+                new_socket.close()
+                return
             new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
             message="";
             while(message==""):
