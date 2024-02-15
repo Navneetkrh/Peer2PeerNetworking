@@ -150,6 +150,9 @@ class Peer:
                     self.addr_socket_map[(message[1],int(message[2]))]=new_socket
                     self.socket_addr_map[new_socket]=(message[1],int(message[2]))
                     break
+                elif message[0]=="PEER BUSY,already,connected to 4 peers":
+                    new_socket.close()
+                    return
                 new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
             sleep(1)
             threading.Thread(target=self.handle_messages, args=(new_socket,)).start()
