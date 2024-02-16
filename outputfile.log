@@ -1,36 +1,99 @@
-2024-02-16 19:46:07,383:seed with address localhost:5000 started
-2024-02-16 19:46:07,399:seed with address localhost:5001 started
-2024-02-16 19:46:07,399:seed with address localhost:5002 started
-2024-02-16 19:46:07,399:seed with address localhost:5003 started
-2024-02-16 19:46:12,030:localhost:1 registered to seed with address localhost:5003
-2024-02-16 19:46:12,030:localhost:2 registered to seed with address localhost:5001
-2024-02-16 19:46:12,046:localhost:3 registered to seed with address localhost:5000
-2024-02-16 19:46:12,046:localhost:5 registered to seed with address localhost:5003
-2024-02-16 19:46:12,046:localhost:4 registered to seed with address localhost:5000
-2024-02-16 19:46:12,056:localhost:8 registered to seed with address localhost:5002
-2024-02-16 19:46:12,060:localhost:2 registered to seed with address localhost:5002
-2024-02-16 19:46:12,062:localhost:6 registered to seed with address localhost:5000
-2024-02-16 19:46:12,063:localhost:1 registered to seed with address localhost:5000
-2024-02-16 19:46:12,070:localhost:7 registered to seed with address localhost:5000
-2024-02-16 19:46:12,076:localhost:5 registered to seed with address localhost:5001
-2024-02-16 19:46:12,076:localhost:4 registered to seed with address localhost:5003
-2024-02-16 19:46:12,081:localhost:8 registered to seed with address localhost:5000
-2024-02-16 19:46:12,081:localhost:3 registered to seed with address localhost:5003
-2024-02-16 19:46:12,094:localhost:2 registered to seed with address localhost:5000
-2024-02-16 19:46:12,095:localhost:7 registered to seed with address localhost:5003
-2024-02-16 19:46:12,095:localhost:1 registered to seed with address localhost:5001
-2024-02-16 19:46:12,095:localhost:6 registered to seed with address localhost:5002
-2024-02-16 19:46:12,095:localhost:4 registered to seed with address localhost:5001
-2024-02-16 19:46:12,095:localhost:5 registered to seed with address localhost:5002
-2024-02-16 19:46:12,095:localhost:3 registered to seed with address localhost:5001
-2024-02-16 19:46:12,108:localhost:8 registered to seed with address localhost:5001
-2024-02-16 19:46:12,108:localhost:6 registered to seed with address localhost:5003
-2024-02-16 19:46:12,112:localhost:7 registered to seed with address localhost:5001
-2024-02-16 19:46:14,104:(localhost:2) received peer list: [('localhost', 6), ('localhost', 8), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 2)] 
-2024-02-16 19:46:14,109:(localhost:1) received peer list: [('localhost', 5), ('localhost', 6), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 2)] 
-2024-02-16 19:46:14,111:(localhost:4) received peer list: [('localhost', 5), ('localhost', 6), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 2)] 
-2024-02-16 19:46:14,114:(localhost:5) received peer list: [('localhost', 5), ('localhost', 6), ('localhost', 8), ('localhost', 1), ('localhost', 2)] 
-2024-02-16 19:46:14,115:(localhost:3) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 2)] 
-2024-02-16 19:46:14,116:(localhost:8) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 6), ('localhost', 3), ('localhost', 2)] 
-2024-02-16 19:46:14,116:(localhost:6) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 6), ('localhost', 3), ('localhost', 2)] 
-2024-02-16 19:46:14,116:(localhost:7) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 6), ('localhost', 3), ('localhost', 2)] 
+2024-02-16 20:01:43,275:seed with address localhost:5000 started
+2024-02-16 20:01:43,277:seed with address localhost:5001 started
+2024-02-16 20:01:43,277:seed with address localhost:5002 started
+2024-02-16 20:01:43,277:seed with address localhost:5003 started
+2024-02-16 20:01:43,277:seed with address localhost:5004 started
+2024-02-16 20:02:00,188:localhost:1 registered to seed with address localhost:5004
+2024-02-16 20:02:00,208:localhost:1 registered to seed with address localhost:5001
+2024-02-16 20:02:00,211:localhost:1 registered to seed with address localhost:5002
+2024-02-16 20:02:02,214:(localhost:1) received peer list: [('localhost', 1)] 
+2024-02-16 20:02:09,305:localhost:2 registered to seed with address localhost:5003
+2024-02-16 20:02:09,315:localhost:2 registered to seed with address localhost:5004
+2024-02-16 20:02:09,320:localhost:2 registered to seed with address localhost:5000
+2024-02-16 20:02:11,321:(localhost:2) received peer list: [('localhost', 1), ('localhost', 2)] 
+2024-02-16 20:02:12,827:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 1
+2024-02-16 20:02:15,356:localhost:3 registered to seed with address localhost:5001
+2024-02-16 20:02:15,363:localhost:3 registered to seed with address localhost:5002
+2024-02-16 20:02:15,366:localhost:3 registered to seed with address localhost:5004
+2024-02-16 20:02:17,370:(localhost:3) received peer list: [('localhost', 1), ('localhost', 2), ('localhost', 3)] 
+2024-02-16 20:02:17,828:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 2
+2024-02-16 20:02:18,376:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 2
+2024-02-16 20:02:18,877:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 1
+2024-02-16 20:02:22,828:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 3
+2024-02-16 20:02:22,829:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 3
+2024-02-16 20:02:27,829:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 4
+2024-02-16 20:02:27,830:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 4
+2024-02-16 20:02:28,166:localhost:4 registered to seed with address localhost:5003
+2024-02-16 20:02:28,183:localhost:4 registered to seed with address localhost:5001
+2024-02-16 20:02:28,189:localhost:4 registered to seed with address localhost:5000
+2024-02-16 20:02:30,193:(localhost:4) received peer list: [('localhost', 3), ('localhost', 1), ('localhost', 2), ('localhost', 4)] 
+2024-02-16 20:02:32,829:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 5
+2024-02-16 20:02:32,830:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 5
+2024-02-16 20:02:32,832:gossip message recieved on (localhost:4) from peer with address ('localhost', 1): message 5
+2024-02-16 20:02:33,215:localhost:5 registered to seed with address localhost:5004
+2024-02-16 20:02:33,223:localhost:5 registered to seed with address localhost:5003
+2024-02-16 20:02:33,224:localhost:5 registered to seed with address localhost:5001
+2024-02-16 20:02:35,231:(localhost:5) received peer list: [('localhost', 5), ('localhost', 3), ('localhost', 1), ('localhost', 2), ('localhost', 4)] 
+2024-02-16 20:02:36,738:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 1
+2024-02-16 20:02:41,701:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 3
+2024-02-16 20:02:43,880:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 6
+2024-02-16 20:02:46,702:gossip message recieved on (localhost:4) from peer with address ('localhost', 3): message 4
+2024-02-16 20:03:04,332:dead node request recieved ('localhost', 1) from peer with address localhost:2 to seed localhost:5003
+2024-02-16 20:03:04,342:dead node request recieved ('localhost', 1) from peer with address localhost:2 to seed localhost:5000
+2024-02-16 20:03:04,343:dead node request recieved ('localhost', 1) from peer with address localhost:2 to seed localhost:5004
+2024-02-16 20:03:04,343:dead node ('localhost', 1) removed from peer list of seed localhost:5004
+
+2024-02-16 20:03:10,205:dead node request recieved ('localhost', 4) from peer with address localhost:2 to seed localhost:5003
+2024-02-16 20:03:10,205:dead node ('localhost', 4) removed from peer list of seed localhost:5003
+
+2024-02-16 20:03:10,210:dead node request recieved ('localhost', 1) from peer with address localhost:4 to seed localhost:5001
+2024-02-16 20:03:10,210:dead node ('localhost', 1) removed from peer list of seed localhost:5001
+
+2024-02-16 20:03:10,214:dead node request recieved ('localhost', 1) from peer with address localhost:4 to seed localhost:5003
+2024-02-16 20:03:10,214:dead node request recieved ('localhost', 2) from peer with address localhost:4 to seed localhost:5001
+2024-02-16 20:03:10,217:dead node request recieved ('localhost', 2) from peer with address localhost:4 to seed localhost:5003
+2024-02-16 20:03:10,217:dead node ('localhost', 2) removed from peer list of seed localhost:5003
+
+2024-02-16 20:03:10,217:dead node request recieved ('localhost', 4) from peer with address localhost:2 to seed localhost:5000
+2024-02-16 20:03:10,217:dead node ('localhost', 4) removed from peer list of seed localhost:5000
+
+2024-02-16 20:03:10,217:dead node request recieved ('localhost', 4) from peer with address localhost:2 to seed localhost:5004
+2024-02-16 20:03:10,217:dead node request recieved ('localhost', 1) from peer with address localhost:4 to seed localhost:5000
+2024-02-16 20:03:10,222:dead node request recieved ('localhost', 2) from peer with address localhost:4 to seed localhost:5000
+2024-02-16 20:03:10,222:dead node ('localhost', 2) removed from peer list of seed localhost:5000
+
+2024-02-16 20:03:10,383:dead node request recieved ('localhost', 3) from peer with address localhost:2 to seed localhost:5003
+2024-02-16 20:03:10,389:dead node request recieved ('localhost', 1) from peer with address localhost:3 to seed localhost:5004
+2024-02-16 20:03:10,392:dead node request recieved ('localhost', 1) from peer with address localhost:3 to seed localhost:5002
+2024-02-16 20:03:10,393:dead node ('localhost', 1) removed from peer list of seed localhost:5002
+
+2024-02-16 20:03:10,394:dead node request recieved ('localhost', 3) from peer with address localhost:2 to seed localhost:5004
+2024-02-16 20:03:10,395:dead node ('localhost', 3) removed from peer list of seed localhost:5004
+
+2024-02-16 20:03:10,397:dead node request recieved ('localhost', 1) from peer with address localhost:3 to seed localhost:5001
+2024-02-16 20:03:10,398:dead node request recieved ('localhost', 3) from peer with address localhost:2 to seed localhost:5000
+2024-02-16 20:03:10,398:dead node request recieved ('localhost', 2) from peer with address localhost:3 to seed localhost:5004
+2024-02-16 20:03:10,399:dead node ('localhost', 2) removed from peer list of seed localhost:5004
+
+2024-02-16 20:03:10,399:dead node request recieved ('localhost', 2) from peer with address localhost:3 to seed localhost:5001
+2024-02-16 20:03:10,399:dead node request recieved ('localhost', 2) from peer with address localhost:3 to seed localhost:5002
+2024-02-16 20:03:15,245:dead node request recieved ('localhost', 4) from peer with address localhost:5 to seed localhost:5003
+2024-02-16 20:03:15,250:dead node request recieved ('localhost', 4) from peer with address localhost:5 to seed localhost:5004
+2024-02-16 20:03:15,250:dead node request recieved ('localhost', 4) from peer with address localhost:5 to seed localhost:5001
+2024-02-16 20:03:15,251:dead node ('localhost', 4) removed from peer list of seed localhost:5001
+
+2024-02-16 20:03:15,253:dead node request recieved ('localhost', 5) from peer with address localhost:4 to seed localhost:5000
+2024-02-16 20:03:15,253:dead node request recieved ('localhost', 5) from peer with address localhost:4 to seed localhost:5003
+2024-02-16 20:03:15,253:dead node ('localhost', 5) removed from peer list of seed localhost:5003
+
+2024-02-16 20:03:15,255:dead node request recieved ('localhost', 5) from peer with address localhost:4 to seed localhost:5001
+2024-02-16 20:03:15,255:dead node ('localhost', 5) removed from peer list of seed localhost:5001
+
+2024-02-16 20:03:23,211:dead node request recieved ('localhost', 4) from peer with address localhost:3 to seed localhost:5004
+2024-02-16 20:03:23,213:dead node request recieved ('localhost', 4) from peer with address localhost:3 to seed localhost:5001
+2024-02-16 20:03:23,217:dead node request recieved ('localhost', 4) from peer with address localhost:3 to seed localhost:5002
+2024-02-16 20:03:23,217:dead node request recieved ('localhost', 3) from peer with address localhost:4 to seed localhost:5003
+2024-02-16 20:03:23,217:dead node request recieved ('localhost', 3) from peer with address localhost:4 to seed localhost:5001
+2024-02-16 20:03:23,217:dead node ('localhost', 3) removed from peer list of seed localhost:5001
+
+2024-02-16 20:03:23,217:dead node request recieved ('localhost', 3) from peer with address localhost:4 to seed localhost:5000

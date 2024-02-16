@@ -245,7 +245,7 @@ class Peer:
         for i in range(10):
             try:
                 timestamp = datetime.now().timestamp()
-                generated_message=f'message {i}'
+                generated_message=f'message {1+i}'
                 message = "gossip message:{0}:{1}:{2}:{3}".format(timestamp, self.ip, self.port,generated_message)
                 message_hash = hashlib.sha256(generated_message.encode()).hexdigest()
                 self.message_list[message_hash] = True
