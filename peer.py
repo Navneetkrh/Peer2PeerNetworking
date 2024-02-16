@@ -5,6 +5,7 @@ from datetime import datetime
 from time import sleep
 import time
 import hashlib
+import random
 
 class Peer:
     def __init__(self,port:int,ip:str='localhost'):
@@ -44,8 +45,14 @@ class Peer:
 
 
     def connect_to_seeds(self):
+        # Calculate the number of seeds to connect to
+        num_seeds_to_connect = (len(self.seeds) // 2) + 1
+
+        # Randomly select seeds
+        selected_seeds = random.sample(self.seeds, num_seeds_to_connect)
+
     
-        for seed in self.seeds:
+        for seed in selected_seeds:
             try:
                 new_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -84,7 +91,9 @@ class Peer:
     def connect_to_peers(self):
         print("starting thread for connect_to_peers")
         print("++++++++Available peerlist++++++ ",self.available_peers)
-        for peer in self.available_peers:
+        # randomly select 4 peers
+        peers_to_connect = random.sample(self.available_peers, 4)
+        for peer in peers_to_connect:
             #  if same peer dont connect
             if(peer[0]==self.ip and peer[1]==self.port):
                 continue
@@ -134,10 +143,12 @@ class Peer:
     def handle_peer(self, new_socket):
 
         try:
+            print("SOCKET ADDR MAP: ", self.socket_addr_map)
             # if already connections atmost 4 then dont connect
             if len(self.addr_socket_map) >= 4:
                 # send message to peer that already connected to 4 peers
                 new_socket.send("PEER BUSY,already,connected to 4 peers".encode())
+                print("I AM BUSY")
                 new_socket.close()
                 return
             new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
@@ -151,6 +162,7 @@ class Peer:
                     self.socket_addr_map[new_socket]=(message[1],int(message[2]))
                     break
                 elif message[0]=="PEER BUSY,already,connected to 4 peers":
+                    print("Peer is busy")
                     new_socket.close()
                     return
                 new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
@@ -214,8 +226,9 @@ class Peer:
         try:
             for i in range(10):
                 timestamp = datetime.now().timestamp()
-                message = "gossip message:{0}:{1}:{2}:{3}".format(timestamp, f'message {i}',self.ip, self.port)
-                message_hash = hashlib.sha256(message.encode()).hexdigest()
+                generated_message=f'message {i}'
+                message = "gossip message:{0}:{1}:{2}:{3}".format(timestamp, generated_message,self.ip, self.port)
+                message_hash = hashlib.sha256(generated_message.encode()).hexdigest()
                 self.message_list[message_hash] = True
                 new_socket.send(message.encode())
                 sleep(5)
