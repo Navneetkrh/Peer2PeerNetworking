@@ -1,0 +1,10 @@
+2024-02-16 18:08:19,113:seed with address localhost:5000 started
+2024-02-16 18:08:19,113:seed with address localhost:5001 started
+2024-02-16 18:08:19,113:seed with address localhost:5002 started
+2024-02-16 18:08:19,120:seed with address localhost:5003 started
+2024-02-16 18:08:26,232:localhost:1 registered to seed with address localhost:5002
+2024-02-16 18:08:26,252:localhost:1 registered to seed with address localhost:5000
+2024-02-16 18:08:26,254:localhost:1 registered to seed with address localhost:5003
+2024-02-16 18:08:32,113:localhost:2 registered to seed with address localhost:5002
+2024-02-16 18:08:32,120:localhost:2 registered to seed with address localhost:5000
+2024-02-16 18:08:32,127:localhost:2 registered to seed with address localhost:5001

@@ -173,8 +173,9 @@ class Peer:
         except Exception as e:
             print(f"An error occurred while handling the peer (handle_peer): ", e)
     def handle_messages(self, new_socket):
-        try:
-            while True:
+        
+        while True:
+            try:
                 data = new_socket.recv(1024)
                 print(data)
                 message = data.decode().split(':')
@@ -199,41 +200,46 @@ class Peer:
                         for socket in self.socket_addr_map.keys():
                             if socket != new_socket:
                                 socket.send(data)
-        except Exception as e:
-            print(f"An error occurred while handling messages: ", e)
+            except Exception as e:
+                print(f"An error occurred while handling messages: ", e)
+                break
 
     def liveness_test(self, new_socket):
-        try:
-            while True:
-                timestamp = datetime.now().timestamp()
+       
+        while True:
+            timestamp = datetime.now().timestamp()
+            try:
                 request = "Liveness Request:{0}:{1}:{2}".format(timestamp, self.ip, self.port)
                 new_socket.send(request.encode())
                 print("Liveness Request sent to ", self.socket_addr_map[new_socket])
+            except Exception as e:
+                print(f"An error occurred while sending liveness request")
+               
+            # Check if peer is dead
+            addr = self.socket_addr_map[new_socket]
+            if addr in self.peer_timestamps and time.time() - self.peer_timestamps[addr] > 3 * 13:
+                dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
+                # Send dead_node_message to all seeds
+                for seed_socket in self.sockets_to_seed:
+                    seed_socket.send(dead_node_message.encode())
 
-                # Check if peer is dead
-                addr = self.socket_addr_map[new_socket]
-                if addr in self.peer_timestamps and time.time() - self.peer_timestamps[addr] > 3 * 13:
-                    dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
-                    # Send dead_node_message to all seeds
-                    for seed_socket in self.sockets_to_seed:
-                        seed_socket.send(dead_node_message.encode())
+            sleep(13)
 
-                sleep(13)
-        except Exception as e:
-            print(f"An error occurred during the liveness test: ", e)
     
     def generate_messages(self, new_socket):
-        try:
-            for i in range(10):
+        for i in range(10):
+            try:
                 timestamp = datetime.now().timestamp()
                 generated_message=f'message {i}'
                 message = "gossip message:{0}:{1}:{2}:{3}".format(timestamp, generated_message,self.ip, self.port)
                 message_hash = hashlib.sha256(generated_message.encode()).hexdigest()
                 self.message_list[message_hash] = True
+                
                 new_socket.send(message.encode())
-                sleep(5)
-        except Exception as e:
-            print(f"An error occurred while generating messages: ", e)
+            except Exception as e:
+                print(f"error in sending gossips request")
+                break
+            sleep(5)
 
     
 

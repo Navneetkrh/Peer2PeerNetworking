@@ -2,8 +2,7 @@
 
 import socket 
 import threading
-
-
+import logging
 
 class Seed:
     def __init__(self,port=12345,ip='localhost'):
@@ -14,6 +13,7 @@ class Seed:
         self.peerlist = []
         # add seed entry to config file
         self.config_entry()
+        logging.info(f'seed with address {self.ip}:{self.port} started')
         
     def config_entry(self):
         # cheack if already present
@@ -44,9 +44,10 @@ class Seed:
             return
 
     def handle_peer(self, peer, addr):
-        try:
-            peer.send('welcome connected to seed with address {0}:{1}'.format(self.ip, self.port).encode())
-            while True:
+        peer_ip_port = "";
+        peer.send('welcome connected to seed with address {0}:{1}'.format(self.ip, self.port).encode())
+        while True:
+            try:
                 data = peer.recv(1024)
                 decoded_data = data.decode()
                 if(decoded_data == ''):
@@ -65,18 +66,21 @@ class Seed:
                     print("peer list is ", list_of_peers)
                 if message[0] == 'register':
                     print("registering peer")
+                    peer_ip_port=(message[1],int(message[2]))
                     self.peerlist.append((message[1], int(message[2])))
                     peer.send('registered successfully'.encode())
                     print("peer registered successfully")
+                    logging.info(f'{message[1]}:{message[2]} registered to seed with address {self.ip}:{self.port}')
                     open('outfile.txt', 'a').write(f'{message[1]}:{message[2]} registered to seed with address {self.ip}:{self.port}\n')
-                if message[0] == 'dead node':
+                if message[0] == 'Dead Node':
                     address_of_dead_node = (message[1], int(message[2]))
                     self.peerlist.remove(address_of_dead_node)
                     print("dead node ", address_of_dead_node, " removed from peer list")
+                    logging.info(f'dead node request recieved {address_of_dead_node} from peer with address {peer_ip_port[0]}:{peer_ip_port[1]}')
                     open('outfile.txt', 'a').write(f'dead node {address_of_dead_node} removed from peer list\n')
-        except Exception as e:
-            print(f"An error occurred while handling the peer: ", e)
-            
+            except Exception as e:
+                    print(f"An error occurred while handling the peer: ", e)
+        
             
                 
 
@@ -84,8 +88,10 @@ class Seed:
 
     
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO,filename='output1.log',format='%(asctime)s:%(message)s')
     port=int(input('Enter port to connect to: '))
     seed = Seed(port=port)
     seed.listen()
+
     
     print(seed.ip)
