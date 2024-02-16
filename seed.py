@@ -45,9 +45,9 @@ class Seed:
 
     def handle_peer(self, peer, addr):
         peer_ip_port = "";
-        peer.send('welcome connected to seed with address {0}:{1}'.format(self.ip, self.port).encode())
-        while True:
-            try:
+        try:
+            peer.send('welcome connected to seed with address {0}:{1}'.format(self.ip, self.port).encode())
+            while True:
                 data = peer.recv(1024)
                 decoded_data = data.decode()
                 if(decoded_data == ''):
@@ -71,16 +71,19 @@ class Seed:
                     peer.send('registered successfully'.encode())
                     print("peer registered successfully")
                     logging.info(f'{message[1]}:{message[2]} registered to seed with address {self.ip}:{self.port}')
-                    open('outfile.txt', 'a').write(f'{message[1]}:{message[2]} registered to seed with address {self.ip}:{self.port}\n')
+                    
                 if message[0] == 'Dead Node':
                     address_of_dead_node = (message[1], int(message[2]))
-                    self.peerlist.remove(address_of_dead_node)
                     print("dead node ", address_of_dead_node, " removed from peer list")
-                    logging.info(f'dead node request recieved {address_of_dead_node} from peer with address {peer_ip_port[0]}:{peer_ip_port[1]}')
-                    open('outfile.txt', 'a').write(f'dead node {address_of_dead_node} removed from peer list\n')
-            except Exception as e:
-                    print(f"An error occurred while handling the peer: ", e)
-        
+                    logging.info(f'dead node request recieved {address_of_dead_node} from peer with address {peer_ip_port[0]}:{peer_ip_port[1]} to seed {self.ip}:{self.port}')
+                    
+                    if(address_of_dead_node in self.peerlist):
+                        self.peerlist.remove(address_of_dead_node)
+                        logging.info(f'dead node {address_of_dead_node} removed from peer list of seed {self.ip}:{self.port}\n')
+                    
+        except Exception as e:
+            print(f"An error occurred while handling the peer: ", e)
+            
             
                 
 
