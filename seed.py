@@ -6,6 +6,7 @@ import logging
 
 class Seed:
     def __init__(self,port=12345,ip='localhost'):
+      
         self.ip=ip
         self.port=port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

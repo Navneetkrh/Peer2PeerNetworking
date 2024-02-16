@@ -6,6 +6,11 @@ from time import sleep
 import time
 import hashlib
 import random
+def add_padding(raw_data):
+    return raw_data + ' '*(1024-len(raw_data))
+
+def remove_padding(data):
+    return data.strip()  
 
 class Peer:
     def __init__(self,port:int,ip:str='localhost'):
@@ -24,7 +29,7 @@ class Peer:
         self.addr_socket_map={}
         self.socket_addr_map={}
         self.peer_timestamps={}
-        
+    
     
     def start(self):
         # start initial threads
@@ -111,6 +116,7 @@ class Peer:
     def handle_seed(self,new_socket):
         try:
             response = new_socket.recv(1024)
+            response= remove_padding(response)
             print(response)
             # register with seed
             message="register:{0}:{1}".format(self.ip,self.port)
@@ -119,6 +125,8 @@ class Peer:
             new_socket.send(message.encode())
             print("seeds connected")
             response = new_socket.recv(1024)
+            
+            response=remove_padding(response)
             print(response)
             # ask for peer list
             new_peers=[]
@@ -127,6 +135,7 @@ class Peer:
             # receive peer list
             while True:
                 data = new_socket.recv(1024)
+                data=remove_padding(data)
                 decoded_data = data.decode()
                 message = decoded_data.split(':')
                 print("message is ",message)
@@ -148,14 +157,15 @@ class Peer:
             # if already connections atmost 4 then dont connect
             if len(self.addr_socket_map) >= 4:
                 # send message to peer that already connected to 4 peers
-                new_socket.send("PEER BUSY,already,connected to 4 peers".encode())
+                new_socket.send(add_padding("PEER BUSY,already,connected to 4 peers").encode())
                 # print("I AM BUSY")
                 new_socket.close()
                 return
-            new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
+            new_socket.send(add_padding("connected to peer:{0}:{1}").format(self.ip,self.port).encode())
             message="";
             while(message==""):
                 data = new_socket.recv(1024)
+                data=remove_padding(data)
                 # print(data)
                 message = data.decode().split(':')
                 if message[0]=="connected to peer":
@@ -167,7 +177,7 @@ class Peer:
                     print("recieved:PEER BUSY,already,connected to 4 peers")
                     new_socket.close()
                     return
-                new_socket.send("connected to peer:{0}:{1}".format(self.ip,self.port).encode())
+                new_socket.send(add_padding("connected to peer:{0}:{1}").format(self.ip,self.port).encode())
             sleep(1)
             threading.Thread(target=self.handle_messages, args=(new_socket,)).start()
             threading.Thread(target=self.liveness_test, args=(new_socket,)).start()
@@ -184,6 +194,7 @@ class Peer:
             try:
                 # print("trying")
                 data = new_socket.recv(1024)
+                data=remove_padding(data)
                 print(data)
                 message = data.decode().split(':')
                 if message[0]=="connected to peer":
@@ -193,14 +204,14 @@ class Peer:
                     timestamp_of_sender = float(message[1])
                     
                     reply="Liveness Reply:{0}:{1}:{2}:{3}:{4}".format(timestamp_of_sender,self.socket_addr_map[new_socket][0],self.socket_addr_map[new_socket][1],self.ip,self.port)
-                    new_socket.send(reply.encode())
+                    new_socket.send(add_padding(reply).encode())
                 elif message[0]=="Liveness Reply":
                     # Update timestamp of peer
                     # print(message)
                     self.peer_timestamps[self.socket_addr_map[new_socket]] = float(message[1])
 
                 elif message[0]=="gossip message":
-                    new_socket.send(f'forwarding'.encode())
+                    new_socket.send(add_padding(f'forwarding').encode())
 
                     # Check if message is in Message List
                     # print("HERE HAVE THIS+",message)
@@ -214,8 +225,9 @@ class Peer:
                         # Forward message to all peers except the one it was received from
                         for socket in self.socket_addr_map.keys():
                             if socket != new_socket:
-                                socket.send(data)
+                                socket.send(add_padding(data))
                                 socket.recv(1024)
+
                                 
                                 
                 elif message[0]=="gm recieved":
@@ -240,7 +252,7 @@ class Peer:
             timestamp = datetime.now().timestamp()
             try:
                 request = "Liveness Request:{0}:{1}:{2}".format(timestamp, self.ip, self.port)
-                new_socket.send(request.encode())
+                new_socket.send(add_padding(request).encode())
                 
                
                 # print("Liveness Request sent to ", self.socket_addr_map[new_socket])
@@ -260,7 +272,7 @@ class Peer:
                     print(f"Peer {addr} is dead")
                     # Send dead_node_message to all seeds
                     for seed_socket in self.sockets_to_seed:
-                        seed_socket.send(dead_node_message.encode())
+                        seed_socket.send(add_padding(dead_node_message).encode())
                     break
 
 
@@ -285,7 +297,7 @@ class Peer:
                 # message_hash = hashlib.sha256(generated_message.encode()).hexdigest()
                 # # self.message_list[message_hash] = True
                 
-                new_socket.send(message.encode())
+                new_socket.send(add_padding(message).encode())
                 
 
                 print("sent gossip message")
