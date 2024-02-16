@@ -172,32 +172,41 @@ class Peer:
             threading.Thread(target=self.handle_messages, args=(new_socket,)).start()
             threading.Thread(target=self.liveness_test, args=(new_socket,)).start()
             threading.Thread(target=self.generate_messages, args=(new_socket,)).start()
+            
+            
         except Exception as e:
             print(f"An error occurred while handling the peer (handle_peer)")
+    
     def handle_messages(self, new_socket):
+        print("handling messages")
         
         while True:
             try:
+                # print("trying")
                 data = new_socket.recv(1024)
-                # print(data)
+                print(data)
                 message = data.decode().split(':')
                 if message[0]=="connected to peer":
                     self.addr_socket_map[(message[1],int(message[2]))]=new_socket
                     self.socket_addr_map[new_socket]=(message[1],int(message[2]))
                 elif message[0]=="Liveness Request":
-                    timestamp=datetime.now().timestamp()
-                    reply="Liveness Reply:{0}:{1}:{2}".format(timestamp,self.ip,self.port)
+                    timestamp_of_sender = float(message[1])
+                    
+                    reply="Liveness Reply:{0}:{1}:{2}:{3}:{4}".format(timestamp_of_sender,self.socket_addr_map[new_socket][0],self.socket_addr_map[new_socket][1],self.ip,self.port)
                     new_socket.send(reply.encode())
                 elif message[0]=="Liveness Reply":
                     # Update timestamp of peer
                     # print(message)
-                    self.peer_timestamps[self.socket_addr_map[new_socket]] = time.time()
+                    self.peer_timestamps[self.socket_addr_map[new_socket]] = float(message[1])
+
                 elif message[0]=="gossip message":
+                    new_socket.send(f'forwarding'.encode())
+
                     # Check if message is in Message List
                     # print("HERE HAVE THIS+",message)
                     message_hash = hashlib.sha256(message[4].encode()).hexdigest()
-                    # print('gossip message recieved',message[4])
-                    new_socket.send(f'gm recieved'.encode())
+                    print('gossip message recieved',message[4])
+                    
                     if message_hash not in self.message_list:
                         self.message_list[message_hash] = True
                         logging.info(f'gossip message recieved on ({self.ip}:{self.port}) from peer with address {self.socket_addr_map[new_socket]}: {message[4]}')
@@ -206,56 +215,85 @@ class Peer:
                         for socket in self.socket_addr_map.keys():
                             if socket != new_socket:
                                 socket.send(data)
+                                socket.recv(1024)
+                                
+                                
                 elif message[0]=="gm recieved":
                     # print(message)
                     pass
+                elif message[0]=="forwarding":
+                    # print(message)
+                    pass
                 else:
-                    print("Invalid message+",message)
-                    continue
+                    # print("Invalid message+",message)
+                    pass
+                    
             except Exception as e:
-                print(f"An error occurred while handling messages: ", e)
-                break
+                pass
+                # print(f"An error occurred while handling messages: ", e)
+                # break
 
     def liveness_test(self, new_socket):
         fail_count = 0
         while True:
+            sleep(13)
             timestamp = datetime.now().timestamp()
             try:
                 request = "Liveness Request:{0}:{1}:{2}".format(timestamp, self.ip, self.port)
                 new_socket.send(request.encode())
-                print("Liveness Request sent to ", self.socket_addr_map[new_socket])
+                
+               
+                # print("Liveness Request sent to ", self.socket_addr_map[new_socket])
             except Exception as e:
                 fail_count += 1
                 print(f"An error occurred while sending liveness request {fail_count}",)
-               
+            
+            
             # Check if peer is dead
             addr = self.socket_addr_map[new_socket]
-            if addr in self.peer_timestamps and time.time() - self.peer_timestamps[addr] > 3 * 13:
-                dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
-                print(f"Peer {addr} is dead")
-                # Send dead_node_message to all seeds
-                for seed_socket in self.sockets_to_seed:
-                    seed_socket.send(dead_node_message.encode())
-                break
-            sleep(13)
+            if addr in self.peer_timestamps:
+                if(timestamp - self.peer_timestamps[addr] ==0):
+                    fail_count = 0
+
+                if fail_count ==3:
+                    dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
+                    print(f"Peer {addr} is dead")
+                    # Send dead_node_message to all seeds
+                    for seed_socket in self.sockets_to_seed:
+                        seed_socket.send(dead_node_message.encode())
+                    break
+
+
+            # if addr in self.peer_timestamps and time.time() - self.peer_timestamps[addr] > 3 * 13:
+            #     dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
+            #     print(f"Peer {addr} is dead")
+            #     # Send dead_node_message to all seeds
+            #     for seed_socket in self.sockets_to_seed:
+            #         seed_socket.send(dead_node_message.encode())
+            #     break
+            
 
     
     def generate_messages(self, new_socket):
-        sleep(0.5)
+        # sleep(1)
         for i in range(10):
+            
             try:
                 timestamp = datetime.now().timestamp()
                 generated_message=f'message {1+i}'
                 message = "gossip message:{0}:{1}:{2}:{3}".format(timestamp, self.ip, self.port,generated_message)
-                message_hash = hashlib.sha256(generated_message.encode()).hexdigest()
-                self.message_list[message_hash] = True
+                # message_hash = hashlib.sha256(generated_message.encode()).hexdigest()
+                # # self.message_list[message_hash] = True
                 
                 new_socket.send(message.encode())
+                
+
+                print("sent gossip message")
             except Exception as e:
-                print(f"error in sending gossips request")
+                print(f"error in sending gossips messages to one node")
                 break
             sleep(5)
-
+            
     
 
 
