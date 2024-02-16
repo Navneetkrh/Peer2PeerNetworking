@@ -12,18 +12,7 @@ This project is a simple implementation of a peer-to-peer network with a seed no
 
 - `outputfile.log`: This file is used for logging.
 
-## Usage
 
-To start a seed node, run the `seed.py` file and enter the port to connect to when prompted:
-
-```sh
-python seed.py
-```
-To start a peer node, run the `peer.py` file and enter the port to connect to when prompted:
-
-```sh
-python peer.py
-```
 ## Features
 
 - **Seed Node**: The seed node maintains a list of active peers and provides this list to any peer that requests it.
@@ -48,6 +37,20 @@ There are two methods to run the code
 2. Run the peer node manually by running the `peer.py` file.
 
 both will ask for the port number to connect to, you can enter any port number.(IP address is hardcoded to localhost you can change it in the code in demo mode if you want to run it on a different machine you can easily change it.However, The Seed or Peer class is not hardcoded to localhost it can run on any ip. It can be run on any machine.)
+
+
+## Usage
+
+To start a seed node, run the `seed.py` file and enter the port to connect to when prompted:
+
+```sh
+python seed.py
+```
+To start a peer node, run the `peer.py` file and enter the port to connect to when prompted:
+
+```sh
+python peer.py
+```
 
 
  
