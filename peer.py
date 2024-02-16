@@ -92,7 +92,7 @@ class Peer:
         print("starting thread for connect_to_peers")
         print("++++++++Available peerlist++++++ ",self.available_peers)
         # randomly select 4 peers
-        peers_to_connect = random.sample(self.available_peers, 4)
+        peers_to_connect = random.sample(self.available_peers, min(len(self.available_peers),4))
         for peer in peers_to_connect:
             #  if same peer dont connect
             if(peer[0]==self.ip and peer[1]==self.port):
