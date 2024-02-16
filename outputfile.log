@@ -1,0 +1,36 @@
+2024-02-16 19:46:07,383:seed with address localhost:5000 started
+2024-02-16 19:46:07,399:seed with address localhost:5001 started
+2024-02-16 19:46:07,399:seed with address localhost:5002 started
+2024-02-16 19:46:07,399:seed with address localhost:5003 started
+2024-02-16 19:46:12,030:localhost:1 registered to seed with address localhost:5003
+2024-02-16 19:46:12,030:localhost:2 registered to seed with address localhost:5001
+2024-02-16 19:46:12,046:localhost:3 registered to seed with address localhost:5000
+2024-02-16 19:46:12,046:localhost:5 registered to seed with address localhost:5003
+2024-02-16 19:46:12,046:localhost:4 registered to seed with address localhost:5000
+2024-02-16 19:46:12,056:localhost:8 registered to seed with address localhost:5002
+2024-02-16 19:46:12,060:localhost:2 registered to seed with address localhost:5002
+2024-02-16 19:46:12,062:localhost:6 registered to seed with address localhost:5000
+2024-02-16 19:46:12,063:localhost:1 registered to seed with address localhost:5000
+2024-02-16 19:46:12,070:localhost:7 registered to seed with address localhost:5000
+2024-02-16 19:46:12,076:localhost:5 registered to seed with address localhost:5001
+2024-02-16 19:46:12,076:localhost:4 registered to seed with address localhost:5003
+2024-02-16 19:46:12,081:localhost:8 registered to seed with address localhost:5000
+2024-02-16 19:46:12,081:localhost:3 registered to seed with address localhost:5003
+2024-02-16 19:46:12,094:localhost:2 registered to seed with address localhost:5000
+2024-02-16 19:46:12,095:localhost:7 registered to seed with address localhost:5003
+2024-02-16 19:46:12,095:localhost:1 registered to seed with address localhost:5001
+2024-02-16 19:46:12,095:localhost:6 registered to seed with address localhost:5002
+2024-02-16 19:46:12,095:localhost:4 registered to seed with address localhost:5001
+2024-02-16 19:46:12,095:localhost:5 registered to seed with address localhost:5002
+2024-02-16 19:46:12,095:localhost:3 registered to seed with address localhost:5001
+2024-02-16 19:46:12,108:localhost:8 registered to seed with address localhost:5001
+2024-02-16 19:46:12,108:localhost:6 registered to seed with address localhost:5003
+2024-02-16 19:46:12,112:localhost:7 registered to seed with address localhost:5001
+2024-02-16 19:46:14,104:(localhost:2) received peer list: [('localhost', 6), ('localhost', 8), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 2)] 
+2024-02-16 19:46:14,109:(localhost:1) received peer list: [('localhost', 5), ('localhost', 6), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 2)] 
+2024-02-16 19:46:14,111:(localhost:4) received peer list: [('localhost', 5), ('localhost', 6), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 2)] 
+2024-02-16 19:46:14,114:(localhost:5) received peer list: [('localhost', 5), ('localhost', 6), ('localhost', 8), ('localhost', 1), ('localhost', 2)] 
+2024-02-16 19:46:14,115:(localhost:3) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 2)] 
+2024-02-16 19:46:14,116:(localhost:8) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 6), ('localhost', 3), ('localhost', 2)] 
+2024-02-16 19:46:14,116:(localhost:6) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 6), ('localhost', 3), ('localhost', 2)] 
+2024-02-16 19:46:14,116:(localhost:7) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 4), ('localhost', 1), ('localhost', 7), ('localhost', 6), ('localhost', 3), ('localhost', 2)] 
