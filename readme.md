@@ -55,7 +55,7 @@ python peer.py
 
 ## Structure
 The structure in the terms of thread/code is as follows:
-
+*NOTE: if these images are not visible please check the extras folder in the repository*
 Structure of the Seed Node:
 ![Structure of the Seed Node](extras/imageseed.png)
 
