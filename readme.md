@@ -8,6 +8,7 @@ This project is a simple implementation of a peer-to-peer network with a seed no
 
 - `seed.py`: This file contains the `Seed` class which is responsible for handling the seed node in the network. It includes methods for listening to incoming connections and handling peers.
 
+- `seedspawner.py`: This file is used to start multiple seed nodes from ports starting from 5000. It will ask for the number of seed nodes to start.
 - `config.txt`: This file contains the IP addresses and ports of the seed nodes in the network.
 
 - `outputfile.log`: This file is used for logging.
@@ -60,3 +61,52 @@ Structure of the Seed Node:
 
 Structure of the Peer Node:
 ![Structure of the Peer Node](extras/imagepeer.png)
+
+## Code Explanation
+# seed.py
+
+The `seed.py` file contains the `Seed` class, which is responsible for handling the seed node in the network. The seed node maintains a list of active peers and provides this list to any peer that requests it. 
+
+The `Seed` class has the following methods:
+
+- `__init__(self, port=12345, ip='localhost')`: This is the constructor of the `Seed` class. It initializes the seed node with the given IP address and port number, and creates a new socket for the seed node.
+
+- `config_entry(self)`: This method checks if the seed node is already present in the `config.txt` file. If not, it adds the seed node to the file.
+
+- `listen(self)`: This method makes the seed node listen for incoming connections. When a peer node connects to the seed node, it starts a new thread to handle the peer node.
+
+- `handle_peer(self, peer, addr)`: This method handles the communication with a peer node. It receives messages from the peer node and responds accordingly.
+
+
+# Peer.py
+# Peer.py
+
+The `Peer.py` script is responsible for managing the peer-to-peer network. It starts with the `self.start` function which initiates two threads:
+
+1. **Listening Thread**: This thread is responsible for listening to other peer nodes. When a connection is established, it starts a new thread to handle the communication with the connected peer node.
+handles the communication with the connected peer by calling the `handle_peer` function.
+
+2. **Seed Connection Thread**: This thread is responsible for connecting to the seed nodes(using `connect to seeds`).After that It retrieves the peer list from each connected seed node (all of this is done in `handle_seeds` function). After retrieving the peer lists, it performs a union operation to create a comprehensive list of available peers in the network.
+
+
+
+The `connect_to_peers` function is responsible for establishing connections with other peers in the network. It performs the following steps:
+
+1. Randomly selects up to 4 peers from the available peers list.
+2. For each selected peer, it checks if the peer is not the same as the current peer. If it is the same, it skips to the next peer.
+3. It creates a new socket and tries to connect to the peer.
+4. If the connection is successful, it adds the socket to the list of sockets connected to peers (`self.sockets_to_peers`).
+5. It then starts a new thread to handle the communication with the connected peer by calling the `handle_peer` function.
+6. If the connection fails, it prints an error message and continues with the next peer.
+
+## handle_peer function
+
+The `handle_peer` function is responsible for managing the communication with a connected peer. For each connected peer, it starts three separate threads:
+
+1. **Handle Messages Thread**: This thread runs the `handle_messages` method. This method is responsible for continuously listening for and processing incoming messages from the connected peer.
+
+2. **Liveness Test Thread**: This thread runs the `liveness_test` method. This method periodically sends a liveness request to the connected peer to check if it's still active. If a reply is not received within a certain time, the peer is considered inactive and is removed from the list of connected peers.
+
+3. **Gossip Thread (Generate Messages)**: This thread runs the `generate_messages` method. This method periodically sends a gossip message to the connected peer. The gossip message contains the peer's own list of known peers, allowing the peers to share knowledge about the network and discover new peers.
+
+These threads allow the peer to handle multiple tasks concurrently for each connected peer, ensuring efficient communication and network management.
