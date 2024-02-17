@@ -231,6 +231,7 @@ class Peer:
                                     socket.recv(1024)
                                 except Exception as e:
                                     # can't forward message to a dead peer
+                                    
                                     pass
 
                                 
