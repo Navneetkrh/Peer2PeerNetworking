@@ -8,8 +8,15 @@ open('config.txt', 'w').close()
 open('outputfile.log', 'w').close()
 logging.basicConfig(level=logging.INFO,filename='outputfile.log',format='%(asctime)s:%(message)s')
 
+
+threads = []
 for i in range(num_seeds):
     seed_port = 5000 + i  # Assign a unique port for each seed
     seed = Seed(port=seed_port)  
     seed_list.append(seed)
-    threading.Thread(target=seed.listen).start()  # Start the seed in a new thread
+    seedThread = threading.Thread(target=seed.listen) # Start the seed in a new thread
+    seedThread.start()
+    threads.append(seedThread)
+    
+for thread in threads:
+    thread.join()  # Wait for all threads to finish

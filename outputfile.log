@@ -1,60 +1,192 @@
-2024-02-16 23:45:47,340:seed with address localhost:5000 started
-2024-02-16 23:45:47,343:seed with address localhost:5001 started
-2024-02-16 23:45:47,345:seed with address localhost:5002 started
-2024-02-16 23:45:47,348:seed with address localhost:5003 started
-2024-02-16 23:46:03,184:localhost:1 registered to seed with address localhost:5002
-2024-02-16 23:46:03,189:localhost:1 registered to seed with address localhost:5001
-2024-02-16 23:46:03,194:localhost:1 registered to seed with address localhost:5003
-2024-02-16 23:46:05,198:(localhost:1) received peer list: [('localhost', 1)] 
-2024-02-16 23:46:09,029:localhost:2 registered to seed with address localhost:5000
-2024-02-16 23:46:09,033:localhost:2 registered to seed with address localhost:5002
-2024-02-16 23:46:09,039:localhost:2 registered to seed with address localhost:5001
-2024-02-16 23:46:11,042:(localhost:2) received peer list: [('localhost', 1), ('localhost', 2)] 
-2024-02-16 23:46:12,049:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 1
-2024-02-16 23:46:12,049:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 1
-2024-02-16 23:46:12,123:localhost:3 registered to seed with address localhost:5002
-2024-02-16 23:46:12,130:localhost:3 registered to seed with address localhost:5000
-2024-02-16 23:46:12,135:localhost:3 registered to seed with address localhost:5001
-2024-02-16 23:46:14,139:(localhost:3) received peer list: [('localhost', 1), ('localhost', 2), ('localhost', 3)] 
-2024-02-16 23:46:15,145:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 1
-2024-02-16 23:46:17,049:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 2
-2024-02-16 23:46:17,050:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 2
-2024-02-16 23:46:17,216:localhost:4 registered to seed with address localhost:5000
-2024-02-16 23:46:17,223:localhost:4 registered to seed with address localhost:5001
-2024-02-16 23:46:17,231:localhost:4 registered to seed with address localhost:5002
-2024-02-16 23:46:19,237:(localhost:4) received peer list: [('localhost', 1), ('localhost', 4), ('localhost', 2), ('localhost', 3)] 
-2024-02-16 23:46:20,147:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 2
-2024-02-16 23:46:20,242:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 1
-2024-02-16 23:46:22,050:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 3
-2024-02-16 23:46:22,050:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 3
-2024-02-16 23:46:25,149:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 3
-2024-02-16 23:46:25,244:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 2
-2024-02-16 23:46:30,148:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 4
-2024-02-16 23:46:30,153:gossip message recieved on (localhost:2) from peer with address ('localhost', 3): message 4
-2024-02-16 23:46:30,246:gossip message recieved on (localhost:4) from peer with address ('localhost', 3): message 3
-2024-02-16 23:46:35,150:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 5
-2024-02-16 23:46:35,153:gossip message recieved on (localhost:2) from peer with address ('localhost', 3): message 5
-2024-02-16 23:46:35,245:gossip message recieved on (localhost:4) from peer with address ('localhost', 3): message 4
-2024-02-16 23:46:40,151:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 6
-2024-02-16 23:46:40,152:gossip message recieved on (localhost:2) from peer with address ('localhost', 3): message 6
-2024-02-16 23:46:40,246:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 5
-2024-02-16 23:46:45,152:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 7
-2024-02-16 23:46:45,155:gossip message recieved on (localhost:2) from peer with address ('localhost', 3): message 7
-2024-02-16 23:46:45,246:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 6
-2024-02-16 23:46:50,152:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 8
-2024-02-16 23:46:50,155:gossip message recieved on (localhost:2) from peer with address ('localhost', 3): message 8
-2024-02-16 23:46:50,248:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 7
-2024-02-16 23:46:55,153:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 9
-2024-02-16 23:46:55,156:gossip message recieved on (localhost:2) from peer with address ('localhost', 3): message 9
-2024-02-16 23:46:55,249:gossip message recieved on (localhost:4) from peer with address ('localhost', 3): message 8
-2024-02-16 23:47:00,154:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 10
-2024-02-16 23:47:00,157:gossip message recieved on (localhost:2) from peer with address ('localhost', 3): message 10
-2024-02-16 23:47:00,251:gossip message recieved on (localhost:4) from peer with address ('localhost', 3): message 9
-2024-02-16 23:47:04,070:dead node request recieved ('localhost', 1) from peer with address localhost:2 to seed localhost:5001
-2024-02-16 23:47:04,070:dead node ('localhost', 1) removed from peer list of seed localhost:5001
+2024-02-17 15:38:34,120:seed with address localhost:5000 started
+2024-02-17 15:38:34,122:seed with address localhost:5001 started
+2024-02-17 15:38:34,123:seed with address localhost:5002 started
+2024-02-17 15:38:34,124:seed with address localhost:5003 started
+2024-02-17 15:38:34,125:seed with address localhost:5004 started
+2024-02-17 15:38:34,126:seed with address localhost:5005 started
+2024-02-17 15:38:34,131:seed with address localhost:5006 started
+2024-02-17 15:38:34,135:seed with address localhost:5007 started
+2024-02-17 15:38:34,139:seed with address localhost:5008 started
+2024-02-17 15:38:34,145:seed with address localhost:5009 started
+2024-02-17 15:38:52,859:localhost:1 registered to seed with address localhost:5008
+2024-02-17 15:38:52,868:localhost:1 registered to seed with address localhost:5001
+2024-02-17 15:38:52,875:localhost:1 registered to seed with address localhost:5003
+2024-02-17 15:38:52,882:localhost:1 registered to seed with address localhost:5002
+2024-02-17 15:38:52,889:localhost:1 registered to seed with address localhost:5000
+2024-02-17 15:38:52,894:localhost:1 registered to seed with address localhost:5005
+2024-02-17 15:38:54,899:(localhost:1) received peer list: [('localhost', 1)] 
+2024-02-17 15:38:57,046:localhost:2 registered to seed with address localhost:5000
+2024-02-17 15:38:57,054:localhost:2 registered to seed with address localhost:5005
+2024-02-17 15:38:57,062:localhost:2 registered to seed with address localhost:5003
+2024-02-17 15:38:57,072:localhost:2 registered to seed with address localhost:5001
+2024-02-17 15:38:57,077:localhost:2 registered to seed with address localhost:5002
+2024-02-17 15:38:57,083:localhost:2 registered to seed with address localhost:5004
+2024-02-17 15:38:59,087:(localhost:2) received peer list: [('localhost', 1), ('localhost', 2)] 
+2024-02-17 15:39:00,092:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 1
+2024-02-17 15:39:00,092:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 1
+2024-02-17 15:39:00,587:localhost:3 registered to seed with address localhost:5009
+2024-02-17 15:39:00,594:localhost:3 registered to seed with address localhost:5004
+2024-02-17 15:39:00,602:localhost:3 registered to seed with address localhost:5003
+2024-02-17 15:39:00,610:localhost:3 registered to seed with address localhost:5001
+2024-02-17 15:39:00,617:localhost:3 registered to seed with address localhost:5002
+2024-02-17 15:39:00,623:localhost:3 registered to seed with address localhost:5005
+2024-02-17 15:39:02,630:(localhost:3) received peer list: [('localhost', 2), ('localhost', 3), ('localhost', 1)] 
+2024-02-17 15:39:03,637:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 1
+2024-02-17 15:39:04,590:localhost:4 registered to seed with address localhost:5000
+2024-02-17 15:39:04,597:localhost:4 registered to seed with address localhost:5007
+2024-02-17 15:39:04,604:localhost:4 registered to seed with address localhost:5006
+2024-02-17 15:39:04,612:localhost:4 registered to seed with address localhost:5004
+2024-02-17 15:39:04,619:localhost:4 registered to seed with address localhost:5002
+2024-02-17 15:39:04,626:localhost:4 registered to seed with address localhost:5003
+2024-02-17 15:39:05,094:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 2
+2024-02-17 15:39:05,096:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 2
+2024-02-17 15:39:06,632:(localhost:4) received peer list: [('localhost', 3), ('localhost', 1), ('localhost', 4), ('localhost', 2)] 
+2024-02-17 15:39:07,640:gossip message recieved on (localhost:4) from peer with address ('localhost', 1): message 1
+2024-02-17 15:39:08,138:localhost:5 registered to seed with address localhost:5000
+2024-02-17 15:39:08,146:localhost:5 registered to seed with address localhost:5006
+2024-02-17 15:39:08,152:localhost:5 registered to seed with address localhost:5004
+2024-02-17 15:39:08,159:localhost:5 registered to seed with address localhost:5007
+2024-02-17 15:39:08,166:localhost:5 registered to seed with address localhost:5001
+2024-02-17 15:39:08,173:localhost:5 registered to seed with address localhost:5008
+2024-02-17 15:39:08,636:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 2
+2024-02-17 15:39:10,095:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 3
+2024-02-17 15:39:10,095:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 3
+2024-02-17 15:39:10,178:(localhost:5) received peer list: [('localhost', 5), ('localhost', 3), ('localhost', 4), ('localhost', 1), ('localhost', 2)] 
+2024-02-17 15:39:11,185:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 1
+2024-02-17 15:39:11,853:localhost:6 registered to seed with address localhost:5006
+2024-02-17 15:39:11,859:localhost:6 registered to seed with address localhost:5005
+2024-02-17 15:39:11,867:localhost:6 registered to seed with address localhost:5003
+2024-02-17 15:39:11,874:localhost:6 registered to seed with address localhost:5004
+2024-02-17 15:39:11,882:localhost:6 registered to seed with address localhost:5002
+2024-02-17 15:39:11,890:localhost:6 registered to seed with address localhost:5001
+2024-02-17 15:39:12,643:gossip message recieved on (localhost:4) from peer with address ('localhost', 3): message 2
+2024-02-17 15:39:13,640:gossip message recieved on (localhost:3) from peer with address ('localhost', 2): message 3
+2024-02-17 15:39:13,895:(localhost:6) received peer list: [('localhost', 2), ('localhost', 3), ('localhost', 6), ('localhost', 1), ('localhost', 4), ('localhost', 5)] 
+2024-02-17 15:39:14,902:gossip message recieved on (localhost:6) from peer with address ('localhost', 2): message 1
+2024-02-17 15:39:15,097:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 4
+2024-02-17 15:39:15,097:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 4
+2024-02-17 15:39:15,785:localhost:7 registered to seed with address localhost:5003
+2024-02-17 15:39:15,795:localhost:7 registered to seed with address localhost:5002
+2024-02-17 15:39:15,806:localhost:7 registered to seed with address localhost:5008
+2024-02-17 15:39:15,814:localhost:7 registered to seed with address localhost:5009
+2024-02-17 15:39:15,820:localhost:7 registered to seed with address localhost:5004
+2024-02-17 15:39:15,831:localhost:7 registered to seed with address localhost:5001
+2024-02-17 15:39:16,186:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 2
+2024-02-17 15:39:17,642:gossip message recieved on (localhost:4) from peer with address ('localhost', 1): message 3
+2024-02-17 15:39:17,840:(localhost:7) received peer list: [('localhost', 4), ('localhost', 6), ('localhost', 1), ('localhost', 7), ('localhost', 2), ('localhost', 5), ('localhost', 3)] 
+2024-02-17 15:39:18,639:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 4
+2024-02-17 15:39:18,848:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 1
+2024-02-17 15:39:19,901:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 2
+2024-02-17 15:39:19,981:localhost:8 registered to seed with address localhost:5003
+2024-02-17 15:39:19,992:localhost:8 registered to seed with address localhost:5004
+2024-02-17 15:39:20,002:localhost:8 registered to seed with address localhost:5008
+2024-02-17 15:39:20,012:localhost:8 registered to seed with address localhost:5007
+2024-02-17 15:39:20,042:localhost:8 registered to seed with address localhost:5000
+2024-02-17 15:39:20,049:localhost:8 registered to seed with address localhost:5001
+2024-02-17 15:39:20,099:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 5
+2024-02-17 15:39:21,184:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 3
+2024-02-17 15:39:22,057:(localhost:8) received peer list: [('localhost', 3), ('localhost', 6), ('localhost', 5), ('localhost', 2), ('localhost', 8), ('localhost', 1), ('localhost', 7), ('localhost', 4)] 
+2024-02-17 15:39:22,642:gossip message recieved on (localhost:4) from peer with address ('localhost', 1): message 4
+2024-02-17 15:39:23,061:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 1
+2024-02-17 15:39:23,639:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 5
+2024-02-17 15:39:23,826:localhost:9 registered to seed with address localhost:5009
+2024-02-17 15:39:23,833:localhost:9 registered to seed with address localhost:5004
+2024-02-17 15:39:23,841:localhost:9 registered to seed with address localhost:5007
+2024-02-17 15:39:23,849:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 2
+2024-02-17 15:39:23,850:localhost:9 registered to seed with address localhost:5005
+2024-02-17 15:39:23,860:localhost:9 registered to seed with address localhost:5002
+2024-02-17 15:39:23,870:localhost:9 registered to seed with address localhost:5008
+2024-02-17 15:39:24,901:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 3
+2024-02-17 15:39:25,100:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 6
+2024-02-17 15:39:25,100:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 6
+2024-02-17 15:39:25,878:(localhost:9) received peer list: [('localhost', 5), ('localhost', 8), ('localhost', 1), ('localhost', 7), ('localhost', 4), ('localhost', 3), ('localhost', 6), ('localhost', 2), ('localhost', 9)] 
+2024-02-17 15:39:26,186:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 4
+2024-02-17 15:39:27,606:localhost:10 registered to seed with address localhost:5009
+2024-02-17 15:39:27,615:localhost:10 registered to seed with address localhost:5002
+2024-02-17 15:39:27,628:localhost:10 registered to seed with address localhost:5003
+2024-02-17 15:39:27,639:localhost:10 registered to seed with address localhost:5004
+2024-02-17 15:39:27,643:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 5
+2024-02-17 15:39:27,652:localhost:10 registered to seed with address localhost:5005
+2024-02-17 15:39:27,663:localhost:10 registered to seed with address localhost:5006
+2024-02-17 15:39:28,063:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 2
+2024-02-17 15:39:28,640:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 6
+2024-02-17 15:39:28,849:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 3
+2024-02-17 15:39:29,670:(localhost:10) received peer list: [('localhost', 2), ('localhost', 8), ('localhost', 5), ('localhost', 1), ('localhost', 4), ('localhost', 10), ('localhost', 7), ('localhost', 3), ('localhost', 6), ('localhost', 9)] 
+2024-02-17 15:39:29,904:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 4
+2024-02-17 15:39:30,101:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 7
+2024-02-17 15:39:30,102:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 7
+2024-02-17 15:39:30,674:gossip message recieved on (localhost:9) from peer with address ('localhost', 10): message 1
+2024-02-17 15:39:30,675:gossip message recieved on (localhost:10) from peer with address ('localhost', 9): message 1
+2024-02-17 15:39:31,188:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 5
+2024-02-17 15:39:31,466:localhost:11 registered to seed with address localhost:5009
+2024-02-17 15:39:31,475:localhost:11 registered to seed with address localhost:5003
+2024-02-17 15:39:31,486:localhost:11 registered to seed with address localhost:5007
+2024-02-17 15:39:31,494:localhost:11 registered to seed with address localhost:5000
+2024-02-17 15:39:31,505:localhost:11 registered to seed with address localhost:5004
+2024-02-17 15:39:31,520:localhost:11 registered to seed with address localhost:5006
+2024-02-17 15:39:32,643:gossip message recieved on (localhost:4) from peer with address ('localhost', 1): message 6
+2024-02-17 15:39:33,064:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 3
+2024-02-17 15:39:33,527:(localhost:11) received peer list: [('localhost', 6), ('localhost', 2), ('localhost', 5), ('localhost', 8), ('localhost', 11), ('localhost', 1), ('localhost', 7), ('localhost', 4), ('localhost', 10), ('localhost', 3), ('localhost', 9)] 
+2024-02-17 15:39:33,640:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 7
+2024-02-17 15:39:33,850:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 4
+2024-02-17 15:39:34,533:gossip message recieved on (localhost:11) from peer with address ('localhost', 7): message 1
+2024-02-17 15:39:34,867:localhost:12 registered to seed with address localhost:5007
+2024-02-17 15:39:34,875:localhost:12 registered to seed with address localhost:5000
+2024-02-17 15:39:34,884:localhost:12 registered to seed with address localhost:5008
+2024-02-17 15:39:34,892:localhost:12 registered to seed with address localhost:5005
+2024-02-17 15:39:34,901:localhost:12 registered to seed with address localhost:5002
+2024-02-17 15:39:34,904:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 5
+2024-02-17 15:39:34,913:localhost:12 registered to seed with address localhost:5004
+2024-02-17 15:39:35,102:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 8
+2024-02-17 15:39:35,105:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 8
+2024-02-17 15:39:35,676:gossip message recieved on (localhost:9) from peer with address ('localhost', 10): message 2
+2024-02-17 15:39:35,677:gossip message recieved on (localhost:10) from peer with address ('localhost', 9): message 2
+2024-02-17 15:39:36,189:gossip message recieved on (localhost:5) from peer with address ('localhost', 3): message 6
+2024-02-17 15:39:36,925:(localhost:12) received peer list: [('localhost', 6), ('localhost', 12), ('localhost', 9), ('localhost', 5), ('localhost', 2), ('localhost', 8), ('localhost', 11), ('localhost', 1), ('localhost', 4), ('localhost', 10), ('localhost', 7), ('localhost', 3)] 
+2024-02-17 15:39:37,644:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 7
+2024-02-17 15:39:37,932:gossip message recieved on (localhost:12) from peer with address ('localhost', 7): message 1
+2024-02-17 15:39:38,066:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 4
+2024-02-17 15:39:38,642:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 8
+2024-02-17 15:39:38,851:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 5
+2024-02-17 15:39:39,533:gossip message recieved on (localhost:11) from peer with address ('localhost', 7): message 2
+2024-02-17 15:39:39,905:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 6
+2024-02-17 15:39:40,103:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 9
+2024-02-17 15:39:40,105:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 9
+2024-02-17 15:39:40,676:gossip message recieved on (localhost:10) from peer with address ('localhost', 9): message 3
+2024-02-17 15:39:40,678:gossip message recieved on (localhost:9) from peer with address ('localhost', 10): message 3
+2024-02-17 15:39:41,188:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 7
+2024-02-17 15:39:42,644:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 8
+2024-02-17 15:39:43,066:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 5
+2024-02-17 15:39:43,642:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 9
+2024-02-17 15:39:43,852:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 6
+2024-02-17 15:39:44,906:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 7
+2024-02-17 15:39:45,104:gossip message recieved on (localhost:2) from peer with address ('localhost', 1): message 10
+2024-02-17 15:39:45,106:gossip message recieved on (localhost:1) from peer with address ('localhost', 2): message 10
+2024-02-17 15:39:46,188:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 8
+2024-02-17 15:39:47,644:gossip message recieved on (localhost:4) from peer with address ('localhost', 1): message 9
+2024-02-17 15:39:48,067:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 6
+2024-02-17 15:39:48,643:gossip message recieved on (localhost:3) from peer with address ('localhost', 1): message 10
+2024-02-17 15:39:48,854:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 7
+2024-02-17 15:39:49,905:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 8
+2024-02-17 15:39:51,188:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 9
+2024-02-17 15:39:52,645:gossip message recieved on (localhost:4) from peer with address ('localhost', 2): message 10
+2024-02-17 15:39:53,068:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 7
+2024-02-17 15:39:53,853:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 8
+2024-02-17 15:39:54,906:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 9
+2024-02-17 15:39:56,190:gossip message recieved on (localhost:5) from peer with address ('localhost', 4): message 10
+2024-02-17 15:39:58,067:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 8
+2024-02-17 15:39:58,854:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 9
+2024-02-17 15:39:59,907:gossip message recieved on (localhost:6) from peer with address ('localhost', 5): message 10
+2024-02-17 15:40:03,069:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 9
+2024-02-17 15:40:03,855:gossip message recieved on (localhost:7) from peer with address ('localhost', 6): message 10
+2024-02-17 15:40:08,069:gossip message recieved on (localhost:8) from peer with address ('localhost', 6): message 10
+2024-02-17 15:40:22,709:dead node request recieved ('localhost', 10) from peer with address localhost:8 to seed localhost:5007
+2024-02-17 15:40:22,713:dead node request recieved ('localhost', 10) from peer with address localhost:8 to seed localhost:5003
+2024-02-17 15:40:22,713:dead node ('localhost', 10) removed from peer list of seed localhost:5003
 
-2024-02-16 23:47:04,070:dead node request recieved ('localhost', 1) from peer with address localhost:2 to seed localhost:5002
-2024-02-16 23:47:04,071:dead node request recieved ('localhost', 1) from peer with address localhost:2 to seed localhost:5000
-2024-02-16 23:47:04,071:dead node ('localhost', 1) removed from peer list of seed localhost:5002
+2024-02-17 15:40:22,713:dead node request recieved ('localhost', 10) from peer with address localhost:8 to seed localhost:5008
+2024-02-17 15:40:22,713:dead node request recieved ('localhost', 10) from peer with address localhost:8 to seed localhost:5000
+2024-02-17 15:40:22,713:dead node request recieved ('localhost', 10) from peer with address localhost:8 to seed localhost:5004
+2024-02-17 15:40:22,713:dead node ('localhost', 10) removed from peer list of seed localhost:5004
 
-2024-02-16 23:47:05,251:gossip message recieved on (localhost:4) from peer with address ('localhost', 3): message 10
+2024-02-17 15:40:22,713:dead node request recieved ('localhost', 10) from peer with address localhost:8 to seed localhost:5001

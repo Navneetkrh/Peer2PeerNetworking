@@ -33,8 +33,13 @@ class Peer:
     
     def start(self):
         # start initial threads
-        threading.Thread(target=self.connect_to_seeds).start()
-        threading.Thread(target=self.listen).start()
+        connectSeedThread = threading.Thread(target=self.connect_to_seeds)
+        connectSeedThread.start()
+        listeningThread = threading.Thread(target=self.listen)
+        listeningThread.start()
+        
+        connectSeedThread.join()
+        listeningThread.join()
 
         
 
