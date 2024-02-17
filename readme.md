@@ -103,10 +103,10 @@ The `connect_to_peers` function is responsible for establishing connections with
 
 The `handle_peer` function is responsible for managing the communication with a connected peer. For each connected peer, it starts three separate threads:
 
-1. **Handle Messages Thread**: This thread runs the `handle_messages` method. This method is responsible for continuously listening for and processing incoming messages from the connected peer.
+1. **Handle Messages Thread**: This thread runs the `handle_messages` method. This method is responsible for continuously listening for and processing incoming messages from the connected peer and forwarding of the gossip messages to other peers as well as responding to the liveness requests.
 
 2. **Liveness Test Thread**: This thread runs the `liveness_test` method. This method periodically sends a liveness request to the connected peer to check if it's still active. If a reply is not received within a certain time, the peer is considered inactive and reported as deadnode.
 
-3. **Gossip Thread (Generate Messages)**: This thread runs the `generate_messages` method. This method periodically sends a gossip message to the connected peer. The gossip message contains the peer's own list of known peers, allowing the peers to share knowledge about the network and discover new peers.
+3. **Gossip Thread (Generate Messages)**: This thread runs the `generate_messages` method. This method periodically sends a gossip message to the connected peer. 
 
 These threads allow the peer to handle multiple tasks concurrently for each connected peer, ensuring efficient communication and network management.
