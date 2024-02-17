@@ -79,7 +79,7 @@ The `Seed` class has the following methods:
 
 
 # Peer.py
-# Peer.py
+
 
 The `Peer.py` script is responsible for managing the peer-to-peer network. It starts with the `self.start` function which initiates two threads:
 
