@@ -86,7 +86,7 @@ The `Peer.py` script is responsible for managing the peer-to-peer network. It st
 1. **Listening Thread**: This thread is responsible for listening to other peer nodes. When a connection is established, it starts a new thread to handle the communication with the connected peer node.
 handles the communication with the connected peer by calling the `handle_peer` function.
 
-2. **Seed Connection Thread**: This thread is responsible for connecting to the seed nodes(using `connect to seeds`).After that It retrieves the peer list from each connected seed node (all of this is done in `handle_seeds` function). After retrieving the peer lists, it performs a union operation to create a comprehensive list of available peers in the network.
+2. **Seed Connection Thread**: This thread is responsible for connecting to the seed nodes(using `connect to seeds`).After that It retrieves the peer list from each connected seed node (all of this is done in `handle_seeds` function). After retrieving the peer lists, it performs a union operation to create a comprehensive list of available peers in the network.Then it makes a call to `connect_to_peers` function to connect to the peers.
 
 
 
