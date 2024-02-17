@@ -33,7 +33,7 @@ There are two methods to run the code
 2. run `peer.py` file every time you want to start a peer node. It will ask for the port number to connect to, you can enter any port number.(IP address is hardcoded to localhost you can change it in the code in demo mode if you want to run it on a different machine you can easily change it.However, The Seed or Peer class is not hardcoded to localhost it can run on any ip. It can be run on any machine.)q
 
 ## method 2
-1. Run the seed node manually by running the `seed.py` file. but you have to clear the `outputfile.log` file and `config.log` before running the first seed node.
+1. Run the seed node manually by running the `seed.py` file. but you have to clear the `outputfile.log` file and `config.txt` before running the first seed node.
 
 2. Run the peer node manually by running the `peer.py` file.
 
