@@ -227,29 +227,21 @@ class Peer:
                         for socket in self.socket_addr_map.keys():
                             if socket != new_socket:
                                 try:
-                                    socket.send(add_padding(data))
+                                    socket.send(add_padding(data.decode()).encode())
                                     socket.recv(1024)
-                                except Exception as e:
-                                    # can't forward message to a dead peer
-                                    
-                                    pass
+                                except ConnectionResetError:
+                                    print("Peer possibly disconnected")
 
-                                
-                                
-                elif message[0]=="gm recieved":
-                    # print(message)
-                    pass
-                elif message[0]=="forwarding":
-                    # print(message)
-                    pass
-                else:
-                    # print("Invalid message+",message)
-                    pass
+                                    continue
+                                except Exception as e:
+                                    print(f"An error occurred while forwarding message: ", e)
+                                    continue
+                    
+
                     
             except Exception as e:
-                pass
-                # print(f"An error occurred while handling messages: ", e)
-                # break
+                print(f"An error occurred while handling messages: ", e)
+                break
 
     def liveness_test(self, new_socket):
         fail_count = 0
@@ -265,6 +257,13 @@ class Peer:
             except Exception as e:
                 fail_count += 1
                 print(f"An error occurred while sending liveness request {fail_count}",)
+                if fail_count >=3:
+                    dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
+                    print(f"Peer {addr} is dead")
+                    # Send dead_node_message to all seeds
+                    for seed_socket in self.sockets_to_seed:
+                        seed_socket.send(add_padding(dead_node_message).encode())
+                    return
             
             
             # Check if peer is dead
@@ -273,13 +272,7 @@ class Peer:
                 if(timestamp - self.peer_timestamps[addr] ==0):
                     fail_count = 0
 
-                if fail_count ==3:
-                    dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
-                    print(f"Peer {addr} is dead")
-                    # Send dead_node_message to all seeds
-                    for seed_socket in self.sockets_to_seed:
-                        seed_socket.send(add_padding(dead_node_message).encode())
-                    break
+                
 
 
   
