@@ -28,7 +28,7 @@ Please note that this is a simple implementation and may not include all the fea
 
 ## How to run
 There are two methods to run the code
-## method 1
+## method 1 (RECOMMENDED)
 1. Run the `seedspawner.py` file to start the seed node. It will automatically start multiple seed nodes from ports starting from 5000 .It will ask for the number of seed nodes to start.(you can change this if that port is busy on your machine.)
 2. run `peer.py` file every time you want to start a peer node. It will ask for the port number to connect to, you can enter any port number.(IP address is hardcoded to localhost you can change it in the code in demo mode if you want to run it on a different machine you can easily change it.However, The Seed or Peer class is not hardcoded to localhost it can run on any ip. It can be run on any machine.)q
 
