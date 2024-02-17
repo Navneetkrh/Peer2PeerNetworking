@@ -92,7 +92,7 @@ class Seed:
 
     
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO,filename='output1.log',format='%(asctime)s:%(message)s')
+    logging.basicConfig(level=logging.INFO,filename='outputfile.log',format='%(asctime)s:%(message)s')
     port=int(input('Enter port to connect to: '))
     seed = Seed(port=port)
     seed.listen()
