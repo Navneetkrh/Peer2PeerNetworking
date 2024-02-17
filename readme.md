@@ -52,5 +52,8 @@ To start a peer node, run the `peer.py` file and enter the port to connect to wh
 python peer.py
 ```
 
+## Structure
 
- 
+![Structure of the Seed Node](extras/imageseed.png)
+
+![Structure of the Peer Node](extras/imagepeer.png)
