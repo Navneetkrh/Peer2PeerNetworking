@@ -53,7 +53,10 @@ python peer.py
 ```
 
 ## Structure
+The structure in the terms of thread/code is as follows:
 
+Structure of the Seed Node:
 ![Structure of the Seed Node](extras/imageseed.png)
 
+Structure of the Peer Node:
 ![Structure of the Peer Node](extras/imagepeer.png)
