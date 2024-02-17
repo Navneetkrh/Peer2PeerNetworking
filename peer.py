@@ -23,9 +23,9 @@ class Peer:
         self.seeds=[]
         self.find_seeds()
         self.sockets_to_seed=[]
-        self.sockets_to_peers=[]#faaltu
+        self.sockets_to_peers=[]
         self.message_list={}
-        self.alive_peers={} #faaltu ig
+        self.alive_peers={} 
         self.addr_socket_map={}
         self.socket_addr_map={}
         self.peer_timestamps={}
@@ -75,10 +75,7 @@ class Peer:
                 print(e)
                 continue
                 
-        # print("new peers: ",new_peers)
-        # # take union with available peers list
-        # self.available_peers = list(set(self.available_peers) | set(new_peers))
-        # print(self.available_peers)
+       
             
         # after getting the pl
         sleep(2)
@@ -100,8 +97,7 @@ class Peer:
                 print("An error occurred while listening/handling a peer: ", e)
 
     def connect_to_peers(self):
-        # print("starting thread for connect_to_peers")
-        # print("++++++++Available peerlist++++++ ",self.available_peers)
+       
         # randomly select 4 peers
         peers_to_connect = random.sample(self.available_peers, min(len(self.available_peers),4))
         for peer in peers_to_connect:
@@ -136,7 +132,7 @@ class Peer:
             # ask for peer list
             new_peers=[]
             new_socket.send("peer list".encode())
-            # print("asking for peer list")
+          
             # receive peer list
             while True:
                 data = new_socket.recv(1024)
@@ -200,7 +196,7 @@ class Peer:
                 # print("trying")
                 data = new_socket.recv(1024)
                 data=remove_padding(data)
-                print(data)
+                # print(data)
                 message = data.decode().split(':')
                 if message[0]=="connected to peer":
                     self.addr_socket_map[(message[1],int(message[2]))]=new_socket
@@ -230,8 +226,12 @@ class Peer:
                         # Forward message to all peers except the one it was received from
                         for socket in self.socket_addr_map.keys():
                             if socket != new_socket:
-                                socket.send(add_padding(data))
-                                socket.recv(1024)
+                                try:
+                                    socket.send(add_padding(data))
+                                    socket.recv(1024)
+                                except Exception as e:
+                                    # can't forward message to a dead peer
+                                    pass
 
                                 
                                 
@@ -281,27 +281,18 @@ class Peer:
                     break
 
 
-            # if addr in self.peer_timestamps and time.time() - self.peer_timestamps[addr] > 3 * 13:
-            #     dead_node_message = "Dead Node:{0}:{1}:{2}:{3}:{4}".format(addr[0], addr[1], timestamp, self.ip, self.port)
-            #     print(f"Peer {addr} is dead")
-            #     # Send dead_node_message to all seeds
-            #     for seed_socket in self.sockets_to_seed:
-            #         seed_socket.send(dead_node_message.encode())
-            #     break
-            
+  
 
     
     def generate_messages(self, new_socket):
-        # sleep(1)
+   
         for i in range(10):
             
             try:
                 timestamp = datetime.now().timestamp()
                 generated_message=f'message {1+i}'
                 message = "gossip message:{0}:{1}:{2}:{3}".format(timestamp, self.ip, self.port,generated_message)
-                # message_hash = hashlib.sha256(generated_message.encode()).hexdigest()
-                # # self.message_list[message_hash] = True
-                
+          
                 new_socket.send(add_padding(message).encode())
                 
 
